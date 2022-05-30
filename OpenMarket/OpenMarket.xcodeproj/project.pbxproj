@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A112ADD42844DC0100888FF2 /* ProductsPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112ADD32844DC0100888FF2 /* ProductsPatch.swift */; };
+		A112ADD92844E53D00888FF2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112ADD82844E53D00888FF2 /* DetailView.swift */; };
+		A112ADDB2844E54A00888FF2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112ADDA2844E54A00888FF2 /* DetailViewController.swift */; };
+		A112ADDD2844E55400888FF2 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112ADDC2844E55400888FF2 /* DetailViewModel.swift */; };
+		A112ADDF2844F43100888FF2 /* ProductSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112ADDE2844F43100888FF2 /* ProductSecret.swift */; };
 		A1255C77283C9B910013772D /* ProductsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1255C76283C9B910013772D /* ProductsPost.swift */; };
 		A1258A4728439ABA000F2A4A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1258A4628439AB9000F2A4A /* Currency.swift */; };
 		A128FB96283E45AA00B96535 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128FB95283E45AA00B96535 /* UITextView.swift */; };
@@ -70,6 +74,10 @@
 
 /* Begin PBXFileReference section */
 		A112ADD32844DC0100888FF2 /* ProductsPatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsPatch.swift; sourceTree = "<group>"; };
+		A112ADD82844E53D00888FF2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A112ADDA2844E54A00888FF2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A112ADDC2844E55400888FF2 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		A112ADDE2844F43100888FF2 /* ProductSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSecret.swift; sourceTree = "<group>"; };
 		A1255C76283C9B910013772D /* ProductsPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsPost.swift; sourceTree = "<group>"; };
 		A1258A4628439AB9000F2A4A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A128FB95283E45AA00B96535 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -141,6 +149,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A112ADD52844E50D00888FF2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A112ADD62844E52700888FF2 /* View */,
+				A112ADD72844E52B00888FF2 /* ViewModel */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		A112ADD62844E52700888FF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A112ADD82844E53D00888FF2 /* DetailView.swift */,
+				A112ADDA2844E54A00888FF2 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A112ADD72844E52B00888FF2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A112ADDC2844E55400888FF2 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A133879E2833672100950EA2 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +267,9 @@
 		A1FC1BC6283737A700EC14DD /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DAA968E9283E7FBE00CDA7B1 /* Managing */,
 				A1FC1BC8283737C400EC14DD /* Main */,
+				DAA968E9283E7FBE00CDA7B1 /* Managing */,
+				A112ADD52844E50D00888FF2 /* Detail */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -339,6 +374,7 @@
 				DA9AE560282AAA1C003BA8B2 /* ProductsReceive.swift */,
 				A1255C76283C9B910013772D /* ProductsPost.swift */,
 				A112ADD32844DC0100888FF2 /* ProductsPatch.swift */,
+				A112ADDE2844F43100888FF2 /* ProductSecret.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -530,7 +566,9 @@
 				A128FB98283E482B00B96535 /* UITextField.swift in Sources */,
 				A1D48C542831EFB000C1819F /* Encodable.swift in Sources */,
 				DA94FF912829FC8F002CDFF6 /* Products.swift in Sources */,
+				A112ADDB2844E54A00888FF2 /* DetailViewController.swift in Sources */,
 				A1D0E1032829F5FE00451BF8 /* MainView.swift in Sources */,
+				A112ADD92844E53D00888FF2 /* DetailView.swift in Sources */,
 				DAA968D1283BBFDF00CDA7B1 /* BaseCell.swift in Sources */,
 				A128FB9A283E4A5800B96535 /* InputError.swift in Sources */,
 				DA9AE549282A4513003BA8B2 /* HTTPMethod.swift in Sources */,
@@ -543,10 +581,12 @@
 				DA9AE567282B5709003BA8B2 /* ProductsDetail.swift in Sources */,
 				DA9AE5B728326AF0003BA8B2 /* ProductsListCell.swift in Sources */,
 				A13387A02833673300950EA2 /* ImageCacheManager.swift in Sources */,
+				A112ADDD2844E55400888FF2 /* DetailViewModel.swift in Sources */,
 				A1258A4728439ABA000F2A4A /* Currency.swift in Sources */,
 				C70FB0FD25BEF61C00C9924E /* SceneDelegate.swift in Sources */,
 				DAA968D7283CA98900CDA7B1 /* RegisterViewController.swift in Sources */,
 				A1DADBF2282D4F88002C7B4D /* URLSession.swift in Sources */,
+				A112ADDF2844F43100888FF2 /* ProductSecret.swift in Sources */,
 				A1DADBF4282D4FCB002C7B4D /* URLSessionProtocol.swift in Sources */,
 				DA9AE5BB28327C15003BA8B2 /* UILabel.swift in Sources */,
 				DAA968D9283D054900CDA7B1 /* ProductsHorizontalCell.swift in Sources */,

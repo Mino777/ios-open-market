@@ -66,4 +66,34 @@ struct EndPointStorage {
         
         return endpoint
     }
+    
+    static func productsSecret(productID: Int, secret: ProductSecret) -> EndPoint {
+        let headers: [String: String] = [
+            Constants.identifier: Constants.identifierSerialNumber,
+            Constants.contentType: "application/json"
+        ]
+        
+        let endpoint = EndPoint(
+            path: Constants.basePath + "/\(productID)" + "/secret",
+            method: .post,
+            bodyParameters: secret,
+            headers: headers
+        )
+        
+        return endpoint
+    }
+    
+    static func productsDelete(productID: Int, secret: String) -> EndPoint {
+        let headers: [String: String] = [
+            Constants.identifier: Constants.identifierSerialNumber
+        ]
+        
+        let endpoint = EndPoint(
+            path: Constants.basePath + "/\(productID)" + "/\(secret)",
+            method: .delete,
+            headers: headers
+        )
+        
+        return endpoint
+    }
 }

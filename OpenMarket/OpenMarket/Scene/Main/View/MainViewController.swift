@@ -161,9 +161,8 @@ extension MainViewController: UICollectionViewDelegate {
         if let id = viewModel.snapshot?.itemIdentifiers[safe: indexPath.item]?.id {
             viewModel.requestProductDetail(by: id) { productDetail in
                 DispatchQueue.main.async {
-                    let modifyViewController = ModifyViewController(productDetail: productDetail)
-                    modifyViewController.modalPresentationStyle = .fullScreen
-                    self.present(modifyViewController, animated: true)
+                    let modifyViewController = DetailViewController(product: productDetail)
+                    self.navigationController?.pushViewController(modifyViewController, animated: true)
                 }
             }
         }
