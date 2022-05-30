@@ -26,4 +26,19 @@ final class ModifyViewModel: ManagingViewModel {
             }
         }
     }
+    
+    func requestPatch(productID: Int, _ productsPatch: ProductsPatch, completion: @escaping () -> ()) {
+        let endpoint = EndPointStorage.productsModify(productID: productID, productsPatch: productsPatch)
+        
+        productsAPIServie.updateProduct(with: endpoint) { [weak self] result in
+            switch result {
+            case .success():
+                completion()
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.delegate?.showAlertRequestError(with: error)
+                }
+            }
+        }
+    }
 }

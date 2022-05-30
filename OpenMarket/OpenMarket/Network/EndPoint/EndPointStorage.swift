@@ -50,4 +50,20 @@ struct EndPointStorage {
         
         return endpoint
     }
+    
+    static func productsModify(productID: Int, productsPatch: ProductsPatch) -> EndPoint {
+        let headers: [String: String] = [
+            Constants.identifier: Constants.identifierSerialNumber,
+            Constants.contentType: "application/json"
+        ]
+        
+        let endpoint = EndPoint(
+            path: Constants.basePath + "/\(productID)",
+            method: .patch,
+            bodyParameters: productsPatch,
+            headers: headers
+        )
+        
+        return endpoint
+    }
 }

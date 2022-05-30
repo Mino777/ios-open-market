@@ -34,7 +34,7 @@ extension Requestable {
             case.success(let body):
                 if body.isEmpty == false {
                     do {
-                        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: bodyParameters)
+                        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
                     } catch {
                         return .failure(.decodeError)
                     }

@@ -64,6 +64,30 @@ final class APIProvider: Provider {
         }
     }
     
+    func updateProduct(
+        with endpoint: Requestable,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        let urlRequest = endpoint.generateUrlRequest()
+        
+        switch urlRequest {
+        case .success(let urlRequest):
+            urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
+                print(String(data: data!, encoding: .utf8))
+                self?.checkError(with: data, response, error) { result in
+                    switch result {
+                    case .success(_):
+                        completion(.success(()))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            }.resume()
+        case .failure(let error):
+            completion(.failure(error))
+        }
+    }
+    
     @discardableResult
     func requestImage(
         with url: URL,

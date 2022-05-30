@@ -56,8 +56,11 @@ extension ModifyViewController {
 extension ModifyViewController {
     @objc private func didTapDoneButton() {
         if checkInputValidation() {
-            // TODO: PATCH API
-            self.dismiss(animated: true)
+            viewModel.requestPatch(productID: productDetail.id, makeProductsModify()) {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                }
+            }
         }
     }
 }
@@ -105,5 +108,23 @@ extension ModifyViewController {
                 return cell
             })
         return dataSource
+    }
+    
+    private func makeProductsModify() -> ProductsPatch {
+        let productName = managingView.productNameTextField.text ?? ""
+        let descriptions = managingView.productDescriptionTextView.text ?? ""
+        let productPrice = Double(managingView.productPriceTextField.text ?? "0") ?? .zero
+        let currency = managingView.productCurrencySegmentedControl.selectedSegmentIndex == .zero ? Currency.KRW : Currency.USD
+        let discountedPrice = Double(managingView.productDiscountedTextField.text ?? "0")
+        let stock = Int(managingView.productStockTextField.text ?? "0")
+        let secret = "rwfkpko1fp"
+        
+        return ProductsPatch(name: productName,
+                             descriptions: descriptions,
+                             price: productPrice,
+                             currency: currency,
+                             discountedPrice: discountedPrice,
+                             stock: stock,
+                             secret: secret)
     }
 }
