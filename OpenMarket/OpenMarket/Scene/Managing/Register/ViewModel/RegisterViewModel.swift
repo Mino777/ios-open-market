@@ -24,22 +24,28 @@ final class RegisterViewModel: ManagingViewModel {
     
     func setUpDefaultImage() {
         guard let plus = UIImage(named: Constants.plus)?.pngData() else { return }
-        images.append(
-            ImageInfo(fileName: Constants.plus, data: plus, type: Constants.png)
-        )
-        applySnapshot()
+        let plusImage = ImageInfo(fileName: Constants.plus, data: plus, type: Constants.png)
+        applySnapshot(image: plusImage)
     }
     
     func insert(image: UIImage) {
         guard let data = image.jpegData(compressionQuality: 0.5) else { return }
-        images.insert(
-            ImageInfo(fileName: generateUUID(), data: data, type: Constants.jpg),
-            at: .zero
-        )
-        applySnapshot()
+        let imageInfo = ImageInfo(fileName: generateUUID(), data: data, type: Constants.jpg)
+        
+        DispatchQueue.main.async {
+            guard let lastItem = self.snapshot?.itemIdentifiers.last else { return }
+            self.snapshot?.insertItems([imageInfo], beforeItem: lastItem)
+            guard let snapshot = self.snapshot else {
+                return
+            }
+            self.datasource?.apply(snapshot)
+        }
     }
     
     func removeLastImage() {
-        images.removeLast()
+        guard let lastImage = snapshot?.itemIdentifiers.last else {
+            return
+        }
+        snapshot?.deleteItems([lastImage])
     }
 }

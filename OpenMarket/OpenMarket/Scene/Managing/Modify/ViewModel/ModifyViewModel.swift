@@ -19,8 +19,8 @@ final class ModifyViewModel: ManagingViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.images.append(ImageInfo(fileName: self.generateUUID(), data: data, type: Constants.jpg))
-                self.applySnapshot()
+                let imageInfo = ImageInfo(fileName: self.generateUUID(), data: data, type: Constants.jpg)
+                self.applySnapshot(image: imageInfo)
             case .failure(let error):
                 self.delegate?.showAlertRequestError(with: error)
             }

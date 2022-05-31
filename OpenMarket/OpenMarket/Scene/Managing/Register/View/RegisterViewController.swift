@@ -34,6 +34,7 @@ extension RegisterViewController {
     
     private func setUpViewModel() {
         viewModel.datasource = makeDataSource()
+        viewModel.snapshot = viewModel.makeSnapsnot()
         viewModel.delegate = self
     }
     
@@ -80,7 +81,7 @@ extension RegisterViewController {
             return false
         }
         
-        guard viewModel.images.count >= 2 else {
+        guard viewModel.snapshotNumberOfItems() >= 2 else {
             showAlertInputError(with: .productImageIsEmpty)
             return false
         }
@@ -105,7 +106,7 @@ extension RegisterViewController {
                 cell.updateImage(imageInfo: image)
                 cell.delegate = self
                 
-                if indexPath.row == (self.viewModel.images.count - 1) {
+                if indexPath.row == (self.viewModel.snapshotNumberOfItems() - 1) {
                     cell.addPlusButton()
                 }
                 
@@ -122,7 +123,7 @@ extension RegisterViewController {
         let discountedPrice = Double(managingView.productDiscountedTextField.text ?? "0")
         let stock = Int(managingView.productStockTextField.text ?? "0")
         let secret = "rwfkpko1fp"
-        let images = viewModel.images
+        let images = viewModel.snapshotItem()
         
         return ProductsPost(name: productName,
                             descriptions: descriptions,
@@ -137,7 +138,7 @@ extension RegisterViewController {
 
 extension RegisterViewController: CellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func addButtonTaped() {
-        if viewModel.images.count < 6 {
+        if viewModel.snapshotNumberOfItems() < 6 {
             self.present(imagePicker, animated: true)
         } else {
             showAlertInputError(with: .exceededNumberOfImages)

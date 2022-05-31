@@ -47,6 +47,7 @@ extension ModifyViewController {
     
     private func setUpViewModel() {
         viewModel.datasource = makeDataSource()
+        viewModel.snapshot = viewModel.makeSnapsnot()
         viewModel.delegate = self
     }
 }

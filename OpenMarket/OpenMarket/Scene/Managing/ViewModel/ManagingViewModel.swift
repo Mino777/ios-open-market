@@ -25,7 +25,7 @@ class ManagingViewModel {
     let productsAPIServie = APIProvider()
     
     var datasource: DataSource?
-    var images: [ImageInfo] = []
+    var snapshot: Snapshot?
     
     weak var delegate: ManagingAlertDelegate?
     
@@ -33,12 +33,27 @@ class ManagingViewModel {
         return UUID().uuidString + Constants.dotJPG
     }
     
-    func applySnapshot() {
-        DispatchQueue.main.async {
-            var snapshot = Snapshot()
-            snapshot.appendSections(Section.allCases)
-            snapshot.appendItems(self.images, toSection: .main)
-            self.datasource?.apply(snapshot)
+    func makeSnapsnot() -> Snapshot? {
+        var snapshot = datasource?.snapshot()
+        snapshot?.deleteAllItems()
+        snapshot?.appendSections(Section.allCases)
+        return snapshot
+    }
+    
+    func applySnapshot(image: ImageInfo) {
+        DispatchQueue.main.async { [self] in
+            snapshot?.appendItems([image])
+            guard let snapshot = snapshot else { return }
+            
+            datasource?.apply(snapshot, animatingDifferences: false)
         }
+    }
+    
+    func snapshotNumberOfItems() -> Int {
+        snapshot?.numberOfItems ?? .zero
+    }
+    
+    func snapshotItem() -> [ImageInfo] {
+        snapshot?.itemIdentifiers ?? []
     }
 }
