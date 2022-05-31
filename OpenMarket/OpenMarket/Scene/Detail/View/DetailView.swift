@@ -8,7 +8,7 @@
 import UIKit
 
 final class DetailView: UIView {
-    var totalIndex: Int = 0
+    var totalIndex: Int = .zero
     
     private let topScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -142,9 +142,8 @@ final class DetailView: UIView {
         NSLayoutConstraint.activate([
             topStackView.topAnchor.constraint(equalTo: topScrollView.topAnchor),
             topStackView.bottomAnchor.constraint(equalTo: topScrollView.bottomAnchor),
-            topStackView.leadingAnchor.constraint(equalTo: topScrollView.leadingAnchor),
-            topStackView.trailingAnchor.constraint(equalTo: topScrollView.trailingAnchor),
-            topStackView.widthAnchor.constraint(equalTo: topScrollView.widthAnchor)
+            topStackView.leadingAnchor.constraint(equalTo: topScrollView.contentLayoutGuide.leadingAnchor, constant: 10),
+            topStackView.trailingAnchor.constraint(equalTo: topScrollView.contentLayoutGuide.trailingAnchor, constant: -10),
         ])
         
         NSLayoutConstraint.activate([
@@ -184,7 +183,7 @@ final class DetailView: UIView {
     private lazy var horizontalLayout: UICollectionViewCompositionalLayout = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        item.contentInsets = .init(top: 10, leading: .zero, bottom: .zero, trailing: .zero)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1.0), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
