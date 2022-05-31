@@ -68,8 +68,6 @@ final class DetailViewController: UIViewController {
             alert.addAction(confirmAction)
             alert.addAction(cancelAction)
             self.present(alert, animated: true)
-            
-            
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)

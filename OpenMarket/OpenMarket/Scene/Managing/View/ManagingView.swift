@@ -187,9 +187,9 @@ final class ManagingView: UIView {
     
     func setUpView(data: ProductDetail) {
         productNameTextField.text = data.name
-        productPriceTextField.text = String(data.price)
-        productDiscountedTextField.text = String(data.discountedPrice)
-        productStockTextField.text = String(data.stock)
+        productPriceTextField.text = "\(Int(data.price))"
+        productDiscountedTextField.text = "\(Int(data.discountedPrice))"
+        productStockTextField.text = "\(data.stock)"
         productDescriptionTextView.text = data.productsDescription
         
         if data.currency == .KRW {
